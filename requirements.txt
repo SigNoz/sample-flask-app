@@ -1,4 +1,7 @@
-locust
+# locust
 Flask
 bson
 pymongo
+opentelemetry-distro
+opentelemetry-instrumentation
+opentelemetry-exporter-otlp
