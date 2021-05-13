@@ -1,10 +1,10 @@
 ### Prerequisite
-SigNoz should be installed in your local machine or any server. To install SigNoz follosw the instructions at https://signoz.io/docs/deployment/docker/
+SigNoz should be installed in your local machine or any server. To install SigNoz follow the instructions at https://signoz.io/docs/deployment/docker/
 
 
 ### Simple Python Flask Program with MongoDB
 
-To show how you can see metrics for DB calls also in Python app, we have created a sample app which also uses a database (MongoDB) so that the example is more realistic
+To show how you can see metrics for External calls and DB calls in Python app, we have created a sample app which uses a database (MongoDB) so that the example is more realistic
 
 If you already have Mongo daemon running, you can skip the following step to install Mongo
 
