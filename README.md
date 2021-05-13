@@ -1,7 +1,5 @@
 ### Simple Python Flask Program with MongoDB
 
-##### Instructions 
-
 Download MongoDB for:
 - Mac from https://docs.mongodb.com/manual/tutorial/install-mongodb-on-os-x/
 - Linux from https://docs.mongodb.com/manual/administration/install-on-linux/
@@ -9,11 +7,11 @@ Download MongoDB for:
 
 ### Run instructions for sending data to SigNoz
 ```
-pip3 install -r requirements.txt
+sudo pip3 install -r requirements.txt
 ```
 
 ```
-opentelemetry-bootstrap --action=install
+sudo opentelemetry-bootstrap --action=install
 ```
 
 ```
