@@ -1,6 +1,5 @@
 # locust
 Flask
-bson
 pymongo
 requests
 opentelemetry-distro

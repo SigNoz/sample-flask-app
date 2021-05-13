@@ -11,7 +11,9 @@ app = Flask(__name__)
 title = "TODO sample application with Flask and MongoDB"
 heading = "TODO Reminder with Flask and MongoDB"
 
-client = MongoClient("mongodb://127.0.0.1:27017") #host uri
+mongoHost = os.getenv("MONGO_HOST", "127.0.0.1")
+
+client = MongoClient("mongodb://"+mongoHost+":27017") #host uri
 db = client.mymongodb    #Select the database
 todos = db.todo #Select the collection name
 
@@ -112,4 +114,4 @@ def search():
 
 if __name__ == "__main__":
 
-    app.run(host='0.0.0.0')
+    app.run(host='0.0.0.0', port=5000)

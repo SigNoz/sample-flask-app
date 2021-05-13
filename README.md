@@ -15,11 +15,11 @@ Download MongoDB for:
 
 ### Run instructions for sending data to SigNoz
 ```
-sudo pip3 install -r requirements.txt
+pip3 install -r requirements.txt
 ```
 
 ```
-sudo opentelemetry-bootstrap --action=install
+opentelemetry-bootstrap --action=install
 ```
 
 ```
@@ -37,3 +37,23 @@ https://signoz.io/docs/instrumentation/python
 
 
 
+### Run using Docker
+1. Run MongoDB using below command:
+
+```
+docker run --rm --name my-mongo -it -dp 27017:27017 mongo:latest
+```
+
+2. Run **sample-flask-app** using docker image
+
+```
+docker run -e MONGO_HOST='IP_MONGO_HOST' -e OTEL_RESOURCE_ATTRIBUTES='service.name=pythonApp' -e OTEL_EXPORTER_OTLP_ENDPOINT='http://<IP of SigNoz>:4317' -dp 5000:5000 signoz/sample-flask-app:latest 
+```
+*IP_MONGO_HOST* will be `docker.for.mac.localhost` when running in localhost on Mac
+
+
+*Optional*
+Build docker image
+```
+docker build --no-cache -t signoz/sample-flask-app:latest .
+```
