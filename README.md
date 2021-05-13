@@ -9,7 +9,7 @@ Download MongoDB for:
 
 ### Run instructions for sending data to SigNoz
 ```
-pip install -r requirements.txt
+pip3 install -r requirements.txt
 ```
 
 ```
