@@ -11,6 +11,7 @@ If you already have Mongo daemon running, you can skip the following step to ins
 Download MongoDB for:
 - Mac from https://docs.mongodb.com/manual/tutorial/install-mongodb-on-os-x/
 - Linux from https://docs.mongodb.com/manual/administration/install-on-linux/
+- Ubuntu from https://docs.mongodb.com/manual/tutorial/install-mongodb-on-ubuntu/
 
 
 ### Run instructions for sending data to SigNoz
