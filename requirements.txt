@@ -2,6 +2,6 @@
 Flask
 pymongo
 requests
-opentelemetry-distro==0.24b0
-opentelemetry-instrumentation==0.24b0
-opentelemetry-exporter-otlp==1.5.0
+opentelemetry-distro==0.26b1
+opentelemetry-instrumentation==0.26b1
+opentelemetry-exporter-otlp==1.7.1
