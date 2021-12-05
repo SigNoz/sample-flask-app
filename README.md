@@ -30,7 +30,7 @@ OTEL_RESOURCE_ATTRIBUTES=service.name=pythonApp OTEL_EXPORTER_OTLP_ENDPOINT="htt
 For example:
 `<IP of SigNoz>` will be `localhost` if you are running SigNoz in your localhost. For other installations you can use the same IP where SigNoz is accessible.
 
-Our web server is running in the port 5000 by default. Browse `http://localhost:5000` to send requests to this flask server and check the metrics and trace data at `http://<IP of SigNoz>:3000`
+Our web server is running in the port 5002 by default. Browse `http://localhost:5002` to send requests to this flask server and check the metrics and trace data at `http://<IP of SigNoz>:3000`
 
 ### Trobleshooting
 If you face any problem in instrumenting with OpenTelemetry, refer to docs at 
