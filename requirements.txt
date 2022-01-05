@@ -1,7 +1,7 @@
 # locust
-Flask
-pymongo
-requests
+Flask==2.0.2
+pymongo==3.12.1
+requests==2.26.0
 opentelemetry-distro==0.26b1
 opentelemetry-instrumentation==0.26b1
 opentelemetry-exporter-otlp==1.7.1
