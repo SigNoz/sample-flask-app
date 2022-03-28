@@ -24,13 +24,13 @@ opentelemetry-bootstrap --action=install
 ```
 
 ```
-OTEL_RESOURCE_ATTRIBUTES=service.name=pythonApp OTEL_EXPORTER_OTLP_ENDPOINT="http://<IP of SigNoz>:4317" opentelemetry-instrument python3 app.py
+OTEL_RESOURCE_ATTRIBUTES=service.name=flaskApp OTEL_EXPORTER_OTLP_ENDPOINT="http://<IP of SigNoz>:4317" opentelemetry-instrument python3 app.py
 ```
 
 For example:
 `<IP of SigNoz>` will be `localhost` if you are running SigNoz in your localhost. For other installations you can use the same IP where SigNoz is accessible.
 
-Our web server is running in the port 5002 by default. Browse `http://localhost:5002` to send requests to this flask server and check the metrics and trace data at `http://<IP of SigNoz>:3000`
+Our web server is running in the port 5002 by default. Browse `http://localhost:5002` to send requests to this flask server and check the metrics and trace data at `http://<IP of SigNoz>:3301`
 
 ### Trobleshooting
 
