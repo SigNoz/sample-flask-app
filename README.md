@@ -32,7 +32,7 @@ For example:
 
 Our web server is running in the port 5002 by default. Browse `http://localhost:5002` to send requests to this flask server and check the metrics and trace data at `http://<IP of SigNoz>:3301`
 
-### Trobleshooting
+### Troubleshooting
 
 The debug mode can break instrumentation from happening because it enables a reloader. To run instrumentation while the debug mode is enabled, set the use_reloader option to False:
 ```
