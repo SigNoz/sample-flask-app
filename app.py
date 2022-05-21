@@ -7,6 +7,22 @@ import requests
 from random import randrange
 
 
+from opentelemetry.exporter.otlp.proto.grpc.metric_exporter import (
+    OTLPMetricExporter,
+)
+from opentelemetry.metrics import (
+    get_meter_provider,
+    set_meter_provider,
+)
+from opentelemetry.sdk.metrics import MeterProvider
+from opentelemetry.sdk.metrics.export import PeriodicExportingMetricReader
+
+
+exporter = OTLPMetricExporter(insecure=True)
+reader = PeriodicExportingMetricReader(exporter)
+provider = MeterProvider(metric_readers=[reader])
+set_meter_provider(provider)
+
 app = Flask(__name__)
 title = "TODO sample application with Flask and MongoDB"
 heading = "TODO Reminder with Flask and MongoDB"
@@ -16,6 +32,10 @@ mongoHost = os.getenv("MONGO_HOST", "127.0.0.1")
 client = MongoClient("mongodb://"+mongoHost+":27017") #host uri
 db = client.mymongodb    #Select the database
 todos = db.todo #Select the collection name
+
+meter = get_meter_provider().get_meter("sample-flask-app", "0.1.2")
+
+todo_counter = meter.create_up_down_counter("todo_count")
 
 def redirect_url():
     return request.args.get('next') or \
@@ -74,6 +94,7 @@ def action ():
 	date=request.values.get("date")
 	pr=request.values.get("pr")
 	todos.insert({ "name":name, "desc":desc, "date":date, "pr":pr, "done":"no"})
+	todo_counter.add(1)
 	return redirect("/")
 
 @app.route("/remove")
@@ -81,6 +102,7 @@ def remove ():
 	#Deleting a Task with various references
 	key=request.values.get("_id")
 	todos.remove({"_id":ObjectId(key)})
+	todo_counter.add(-1)
 	return redirect("/")
 
 @app.route("/update")
