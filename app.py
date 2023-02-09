@@ -62,7 +62,6 @@ def tasks ():
 	#Display the Uncompleted Tasks
 	todos_l = todos.find({"done":"no"})
 	a2="active"
-	# a3 = 100/0
 	return render_template('index.html',a2=a2,todos=todos_l,t=title,h=heading)
 
 
@@ -133,6 +132,20 @@ def search():
 	else:
 		todos_l = todos.find({refer:key})
 	return render_template('searchlist.html',todos=todos_l,t=title,h=heading)
+
+@app.route("/generate-error", methods=['GET'])
+def generate_error ():
+	if randrange(10) % 2:
+		response = requests.get('https://rufn.fmoceky.io/v3/b851a5c6-ab54-495a-be04-69834ae0d2a7')
+		response.close()
+	elif randrange(10) % 2:
+		listf()
+	elif randrange(10) % 2:
+		map[x] = "e23"
+		for x in range(0, 3):
+			map[x] = 3
+	else:
+		a3 = 100/0
 
 if __name__ == "__main__":
 
