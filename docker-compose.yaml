@@ -1,7 +1,7 @@
 version: "2.4"
 services:
   mongodb:
-    image: mongo:latest
+    image: "mongo:latest"
     container_name: mongodb
     hostname: mongodb
     restart: always
@@ -12,7 +12,7 @@ services:
     #   - 27017:27017
 
   sample-flask:
-    image: signoz/sample-flask-app:latest
+    image: "signoz/sample-flask-app:latest"
     container_name: sample-flask
     hostname: sample-flask
     ports:
@@ -23,4 +23,3 @@ services:
       MONGO_HOST: mongodb
       OTEL_RESOURCE_ATTRIBUTES: service.name=sample-flask
       OTEL_EXPORTER_OTLP_ENDPOINT: http://signoz:4317  # Replace to appropriate SigNoz OtelCollector endpoint, if applicable
-
