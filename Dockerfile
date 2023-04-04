@@ -16,3 +16,6 @@ RUN opentelemetry-bootstrap --action=install
 
 # command to run on container start
 CMD [ "opentelemetry-instrument", "python", "./app.py" ]
+
+# expose port
+EXPOSE 5002
