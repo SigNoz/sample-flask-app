@@ -1,27 +1,51 @@
 from flask import Flask, render_template,request,redirect,url_for # For flask implementation
 from bson import ObjectId # For ObjectId to work
 from pymongo import MongoClient
-import os
+import os, json
 
 import requests
 from random import randrange
 
+import segment.analytics as analytics
 
-from opentelemetry.exporter.otlp.proto.grpc.metric_exporter import (
-    OTLPMetricExporter,
-)
-from opentelemetry.metrics import (
-    get_meter_provider,
-    set_meter_provider,
-)
-from opentelemetry.sdk.metrics import MeterProvider
-from opentelemetry.sdk.metrics.export import PeriodicExportingMetricReader
+analytics.write_key = os.environ.get('SEGMENT_WRITE_KEY')
 
 
-exporter = OTLPMetricExporter(insecure=True)
-reader = PeriodicExportingMetricReader(exporter)
-provider = MeterProvider(metric_readers=[reader])
-set_meter_provider(provider)
+from opentelemetry.instrumentation.requests import RequestsInstrumentor
+from opentelemetry.trace.propagation import get_current_span
+from opentelemetry import trace
+
+tracer = trace.get_tracer(__name__)
+
+def request_hook(span, request):
+	if "api.segment.io" in request.url:
+		request_body = json.loads(request.body)
+		for item in request_body['batch']:
+			spanName = item['event']
+			with tracer.start_as_current_span(spanName) as newSpan:
+				newSpan.set_attribute('userId', item['userId'])
+				for key, value in item['properties'].items():
+					newSpan.set_attribute(key, value)
+
+		
+
+RequestsInstrumentor().instrument(request_hook=request_hook)
+
+# from opentelemetry.exporter.otlp.proto.grpc.metric_exporter import (
+#     OTLPMetricExporter,
+# )
+# from opentelemetry.metrics import (
+#     get_meter_provider,
+#     set_meter_provider,
+# )
+# from opentelemetry.sdk.metrics import MeterProvider
+# from opentelemetry.sdk.metrics.export import PeriodicExportingMetricReader
+
+
+# exporter = OTLPMetricExporter(insecure=True)
+# reader = PeriodicExportingMetricReader(exporter)
+# provider = MeterProvider(metric_readers=[reader])
+# set_meter_provider(provider)
 
 app = Flask(__name__)
 title = "TODO sample application with Flask and MongoDB"
@@ -33,9 +57,9 @@ client = MongoClient("mongodb://"+mongoHost+":27017") #host uri
 db = client.mymongodb    #Select the database
 todos = db.todo #Select the collection name
 
-meter = get_meter_provider().get_meter("sample-flask-app", "0.1.2")
+# meter = get_meter_provider().get_meter("sample-flask-app", "0.1.2")
 
-todo_counter = meter.create_up_down_counter("todo_count")
+# todo_counter = meter.create_up_down_counter("todo_count")
 
 def redirect_url():
     return request.args.get('next') or \
@@ -44,6 +68,10 @@ def redirect_url():
 
 @app.route("/list")
 def lists ():
+		analytics.track('f4ca124298', 'Signed Up', {
+			'plan': 'Enterprise'
+		})
+
 		#Display the all Tasks
 		todos_l = todos.find()
 		a1="active"
@@ -149,4 +177,4 @@ def generate_error ():
 
 if __name__ == "__main__":
 
-    app.run(host='0.0.0.0', port=5002)
+    app.run(host='0.0.0.0', port=5003)

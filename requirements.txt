@@ -5,3 +5,4 @@ opentelemetry-api==1.17.0
 opentelemetry-distro==0.38b0
 opentelemetry-instrumentation==0.38b0
 opentelemetry-exporter-otlp==1.17.0
+segment-analytics-python==2.2.2
