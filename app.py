@@ -6,22 +6,8 @@ import os
 import requests
 from random import randrange
 
+from opentelemetry.metrics import get_meter_provider
 
-from opentelemetry.exporter.otlp.proto.grpc.metric_exporter import (
-    OTLPMetricExporter,
-)
-from opentelemetry.metrics import (
-    get_meter_provider,
-    set_meter_provider,
-)
-from opentelemetry.sdk.metrics import MeterProvider
-from opentelemetry.sdk.metrics.export import PeriodicExportingMetricReader
-
-
-exporter = OTLPMetricExporter(insecure=True)
-reader = PeriodicExportingMetricReader(exporter)
-provider = MeterProvider(metric_readers=[reader])
-set_meter_provider(provider)
 
 app = Flask(__name__)
 title = "TODO sample application with Flask and MongoDB"
