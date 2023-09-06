@@ -1,4 +1,4 @@
-Flask==2.0.2
+Flask==2.2.5
 pymongo==3.12.1
 requests==2.26.0
 opentelemetry-api==1.19.0
