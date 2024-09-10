@@ -1,4 +1,4 @@
-from flask import Flask, render_template,request,redirect,url_for # For flask implementation
+from flask import Flask, jsonify, render_template,request,redirect,url_for # For flask implementation
 from bson import ObjectId # For ObjectId to work
 from pymongo import MongoClient
 import os
@@ -27,6 +27,10 @@ def redirect_url():
     return request.args.get('next') or \
            request.referrer or \
            url_for('index')
+
+@app.route("/healthz")
+def health_check():
+	return jsonify({"status": "ok"})
 
 @app.route("/list")
 def lists ():
