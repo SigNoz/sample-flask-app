@@ -8,7 +8,8 @@ WORKDIR /code
 COPY . .
 
 # install dependencies
-RUN pip install -r requirements.txt
+RUN pip install --upgrade pip && \
+    pip install -r requirements.txt
 
 RUN opentelemetry-bootstrap --action=install
 # copy the content of the local src directory to the working directory
