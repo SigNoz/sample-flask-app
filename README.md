@@ -59,8 +59,6 @@ if __name__ == "__main__":
 If you face any problem in instrumenting with OpenTelemetry, refer to docs at 
 https://signoz.io/docs/instrumentation/python
 
-
-
 ### Run using Docker
 1. Run MongoDB using below command:
 
@@ -71,9 +69,8 @@ docker run --rm --name my-mongo -it -dp 27017:27017 mongo:latest
 2. Run **sample-flask-app** using docker image
 
 ```
-docker run -e MONGO_HOST='IP_MONGO_HOST' -e OTEL_RESOURCE_ATTRIBUTES='service.name=pythonApp' -e OTEL_EXPORTER_OTLP_ENDPOINT='http://<IP of SigNoz>:4317' -dp 5002:5002 signoz/sample-flask-app:latest 
+docker run -e MONGO_URI='mongodb://localhost:27017' -e OTEL_RESOURCE_ATTRIBUTES='service.name=pythonApp' -e OTEL_EXPORTER_OTLP_ENDPOINT='http://<IP of SigNoz>:4317' -dp 5002:5002 signoz/sample-flask-app:latest 
 ```
-*IP_MONGO_HOST* will be `host.docker.internal` when running in localhost on Mac
 
 ### Run using Docker-Compose
 
