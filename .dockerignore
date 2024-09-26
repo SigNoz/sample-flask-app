@@ -103,5 +103,11 @@ venv.bak/
 # mypy
 .mypy_cache/
 
+# git and other local files
+.git/
+.github/
+.compose/
+.versions/
+
 # tmp files
 .DS_Store
