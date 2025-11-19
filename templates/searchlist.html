@@ -7,16 +7,16 @@
 	<h1>{{h}}</h1>
 	<hr>
 	{% if todos[0] %}
-	<h3>Result of the Search : ToDO List</h3>
+	<h3>Search Results</h3>
 	<table>
 	    <tr id="row">
-	    	<td class="status">Status</td>
-	    	<td class="name">Task Name</td>
-	    	<td class="desc">Task Description</td>
-	    	<td class="date">Date</td>
-	    	<td class="pr">Project</td>
-		<td class="func">Delete</td>
-		<td class="func">Modify</td>
+	    	<th class="status">Status</th>
+	    	<th class="name">Task Name</th>
+	    	<th class="desc">Description</th>
+	    	<th class="date">Date</th>
+	    	<th class="pr">Priority</th>
+			<th class="func1">Remove</th>
+			<th class="func2">Modify</th>
 	    </tr>
 		{% for todo in todos %}
 		<tr class="datas">
@@ -29,10 +29,12 @@
 			<td class="func1"><a href="./update?_id={{ todo['_id'] }}"><button type="submit">EDIT</button></a></td>
 		</tr>
 		{% endfor %}
-	{% else %}
-		<h4>No Result Found !!</h4>
-	{% endif %}
 	</table>
-	<a href="/">Return to TaskList</a>
+	{% else %}
+		<h4>No Results Found</h4>
+	{% endif %}
+	<div style="text-align:center;margin-top:16px">
+		<a href="/" style="color:#4CAF50;text-decoration:none;font-weight:600">← Return to TaskList</a>
+	</div>
 </body>
 </html>
