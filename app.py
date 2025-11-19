@@ -8,7 +8,6 @@ from random import randrange
 
 from opentelemetry.metrics import get_meter_provider
 
-
 app = Flask(__name__)
 title = "TODO sample application with Flask and MongoDB"
 heading = "TODO Reminder with Flask and MongoDB"
@@ -37,11 +36,12 @@ def lists ():
 		#Display the all Tasks
 		todos_l = todos.find()
 		a1="active"
+		# mock API calls
 		if randrange(10) % 2:
-			response = requests.get('https://run.mocky.io/v3/b851a5c6-ab54-495a-be04-69834ae0d2a7')
+			response = requests.get('https://google.com')
 			response.close()
 		else:
-			response = requests.get('https://run.mocky.io/v3/1cb67153-a6ac-4aae-aca6-273ed68b5d9e')
+			response = requests.get('https://google.com')
 			response.close()
 
 		return render_template('index.html',a1=a1,todos=todos_l,t=title,h=heading), 500
