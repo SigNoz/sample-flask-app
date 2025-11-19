@@ -1,90 +1,146 @@
-h1{
-/*	font-family:"Arial Black", Gadget, sans-serif;*/
-	font-family:"Times New Romans", Gadget, sans-serif;
+:root{
+  --bg: #f7f8fb;
+  --card: #ffffff;
+  --muted: #6b7280;
+  --primary: #4CAF50;
+  --danger: #f44336;
+  --border: #e6e9ee;
 }
-body{
-	color:black;
-	background-color:white;
-	left-margin:10px;
-	right-margin:10px;
-}
-table{
-	width:95%;
-	border-collapse:collapse;
-	table-layout:fixed;
-}
-td
-{
-	border: rgba(224, 119, 70, 1) 2px solid;
-	word-wrap:break-word;
-}
-table#close{
 
-	table-layout:default;
-	border-collapse:seperate;
-	border-spacing: 5px 5px;
-	border:none;
-	vertical-align:top;
+*{box-sizing:border-box}
+
+body{
+  margin:18px;
+  color:#0f1724;
+  background:var(--bg);
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  -webkit-font-smoothing:antialiased;
 }
-table.none
-{
-	border:none;
-	vertical-align:top;
+
+h1{
+  font-family: "Times New Roman", Times, serif;
+  font-size:1.9rem;
+  margin:0 0 12px;
+  text-align:center;
+  color:#0b1220;
 }
-table.none td
-{
-	border: none;
+
+/* Navigation */
+ul{
+  list-style:none;
+  margin:0 0 14px 0;
+  padding:8px;
+  display:flex;
+  gap:8px;
+  justify-content:center;
 }
-tr.row td{
-	text-decoration:italic;
+li{display:block}
+li a{
+  display:block;
+  color:#fff;
+  padding:10px 14px;
+  text-decoration:none;
+  border-radius:8px;
+  background:#333;
+  transition:background .12s, transform .08s;
 }
-th.status{
-	width:5%;
+li a:hover{background:#111}
+a.active{background:var(--primary)}
+
+/* Tables */
+table{
+  width:95%;
+  margin:12px auto;
+  border-collapse:separate;
+  border-spacing:0;
+  background:var(--card);
+  border-radius:10px;
+  overflow:hidden;
+  box-shadow:0 6px 18px rgba(15,23,42,0.06);
 }
-th.name{
-	width:20%;
+
+/* Header cells */
+th{
+  text-align:left;
+  padding:12px 14px;
+  background:#f8fafc;
+  color:#374151;
+  font-weight:600;
+  border-bottom:1px solid var(--border);
 }
-th.des{
-	width:40%;
-	padding:5px 5px 5px 5px;
+
+td{
+  padding:12px 14px;
+  vertical-align:middle;
+  border-bottom:1px solid var(--border);
+  color:#0f1724;
+  word-wrap:break-word;
 }
-th.date{
-	width:8%;
+
+tr.datas:nth-child(odd){background:#ffffff}
+tr.datas:nth-child(even){background:#fbfbfd}
+tr.datas:hover{background:#f3f4f6}
+
+/* Column widths (kept from original sizes) */
+th.status{width:6%}
+th.name{width:20%}
+th.des{width:40%; padding:5px}
+th.date{width:10%}
+th.pr{width:8%}
+th.func1{width:6%}
+th.func2{width:4%}
+
+/* Inputs, selects, textarea */
+input[type=text], textarea, select{
+  padding:8px 10px;
+  border:1px solid #d1d5db;
+  border-radius:8px;
+  font-size:0.95rem;
 }
-th.pr{
-	width:7%;
+textarea{resize:vertical}
+input:focus, textarea:focus, select:focus{outline:none; border-color:var(--primary); box-shadow:0 0 0 6px rgba(76,175,80,0.06)}
+
+/* Buttons */
+button{cursor:pointer}
+button[type=submit], input[type=submit]{
+  color:white;
+  border:none;
+  padding:8px 12px;
+  border-radius:8px;
+  font-weight:600;
 }
-th.func1{
-	width:6%;
+/* Default green button */
+button[type=submit]:not([style]), input[type=submit]:not([style]){
+  background:linear-gradient(180deg,var(--primary),#3aa14a);
 }
-th.func2{
-	width:5%;
+/* Respect inline styles */
+button[style], input[style]{
+  background-color: inherit;
 }
-input[type=submit] {
-    width: 20em;  height: 2em;
+/* Danger / Delete */
+.func1 button{background:var(--danger)}
+.func1 button:hover{background:#d32f2f}
+.func2 button{background:#3b82f6}
+.func2 button:hover{background:#2563eb}
+
+/* Small image icon used for status */
+input[type="image"]{width:26px;height:26px;border:0;padding:0}
+
+/* Special tables used for forms */
+table#close{table-layout:auto;border-spacing:5px;border:none;vertical-align:top}
+table.none{border:none;vertical-align:top}
+table.none td{border:none;padding:6px}
+
+/* Responsive */
+@media (max-width:800px){
+  table{width:100%}
+  th, td{padding:10px}
+  h1{font-size:1.5rem}
+  ul{flex-wrap:wrap}
 }
-ul {
-    list-style-type: none;
-    margin: 0;
-    padding: 0;
-    overflow: hidden;
-    background-color: #333;
-}
-li {
-    float: left;
-}
-li a {
-    display: block;
-    color: white;
-    text-align: center;
-    padding: 14px 16px;
-    text-decoration: none;
-}
-a.active {
-    background-color: #4CAF50;
-}
-/* Change the link color to #111 (black) on hover */
-li a:hover {
-    background-color: #111;
+
+@media (max-width:480px){
+  th, td{font-size:0.95rem;padding:8px}
+  input[type=text], textarea{font-size:0.95rem}
 }
 
