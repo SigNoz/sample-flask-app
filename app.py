@@ -36,13 +36,8 @@ def lists ():
 		#Display the all Tasks
 		todos_l = todos.find()
 		a1="active"
-		# mock API calls
-		if randrange(10) % 2:
-			response = requests.get('https://google.com')
-			response.close()
-		else:
-			response = requests.get('https://google.com')
-			response.close()
+		# mock API call
+		response = requests.get('https://google.com')
 
 		return render_template('index.html',a1=a1,todos=todos_l,t=title,h=heading), 500
 
